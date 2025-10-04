@@ -105,7 +105,7 @@ class Jefe(Monstruo):
 		texto = [f"¡Un jefe {self.nombre} aparece! Vida: {self.vida}, Ataque: {self.ataque}"]
 
 		while self.vida > 0 and explorador.vida > 0:
-			if random.random() < 0.35:  # Explorador acierta menos
+			if random.random() < 0.4: # Explorador acierta menos que con monstruos normales
 				self.vida -= 1
 				texto.append(f"Golpeas al {self.nombre}. Le queda {self.vida} de vida.")
 			else:
@@ -126,10 +126,11 @@ class Jefe(Monstruo):
 
 # Eventos
 class Evento(ContenidoHabitacion):
-	def __init__(self, nombre, descripcion, efecto):
+	def __init__(self, nombre, descripcion, efecto, usado):
 		self.nombre = nombre
 		self._descripcion = descripcion
 		self.efecto = efecto
+		self.usado = False
 
 	@property
 	def descripcion(self):
@@ -143,23 +144,41 @@ class Evento(ContenidoHabitacion):
 		texto = [f"Ocurre un evento: {self.nombre} - {self._descripcion}"]
 
 		if self.efecto == "trampa":
-			explorador.recibir_dano(1)
-			texto.append("¡Caíste en una trampa! Pierdes 1 de vida.")
-		elif self.efecto == "fuente":
-			explorador.vida += 1
-			texto.append("Encuentras una fuente mágica. Ganas 1 de vida.")
-		elif self.efecto == "bonificacion":
-			explorador.bonus += 1 # Aun no se ha implementado la duracion por X celdas ni efecto en combate
-			texto.append("Recibes una bendición temporal (+ Ataque).")
-		elif self.efecto == "portal":
-			posibles = [h for h in explorador.mapa.habitaciones.values() if h.posicion != explorador.posicion_actual]
-			if posibles:
-				destino = random.choice(posibles)
-				explorador.posicion_actual = destino.posicion
-				destino.visitada = True
-				texto.append(f"Un portal se abre... ¡eres transportado a {destino.posicion}!")
+			if self.usado == False:
+				explorador.recibir_dano(1)
+				texto.append("¡Caíste en una trampa! Pierdes 1 de vida.")
+				self.usado = True
 			else:
-				texto.append("El portal intentó activarse, pero no encontró destino.")
+				texto.append("La trampa ya fue activada.")
+				
+		elif self.efecto == "fuente":
+			if self.usado == False:
+				explorador.vida += 1
+				texto.append("Una de las hadas comenzó a seguirte. Ganas 1 de vida.")
+				self.usado = True
+			else: 
+				texto.append("Las hadas se han ido.")
+
+		elif self.efecto == "bonificacion":
+			# Se omite if self.usado ya que la sala está bendecida permanentemente como característica única
+			x, y = explorador.posicion_actual
+			x0, y0 = explorador.mapa.habitacion_inicial.posicion
+			distancia = abs(x - x0) + abs(y - y0)
+			explorador.aplicar_bonificacion(distancia, 2, 0.15)
+			texto.append("Recibes una bendición de la diosa Hylia (+ Ataque).")
+
+		elif self.efecto == "portal":
+
+			if self.usado == False:
+				posibles = [h for h in explorador.mapa.habitaciones.values() if h.posicion != explorador.posicion_actual]
+				if posibles:
+					destino = random.choice(posibles)
+					explorador.posicion_actual = destino.posicion
+					destino.visitada = True
+					texto.append(f"Un portal se abre... ¡eres transportado a {destino.posicion}!")
+					self.usado = True
+			else:
+				texto.append("El portal intentó activarse, pero ya no tiene poder.")
 		else:
 			texto.append("El evento no tuvo efecto concreto.")
 

@@ -32,10 +32,17 @@
 - [x] Reglas de combate simples (probabilidades) funcionando.
 
 - [x] Testeo aprobado
+### Post push:
+- [x] Mejora del `main.py`, ahora muestra qué contenido hay en cada habitación.
+- [x] Se arregló posibles_eventos, no contaba con el bonus.
+- [x] Los eventos se hicieron consumibles, a excepción del bonus.
+
 ---
 
 ## Día 3 — Visualización y estadísticas
-- [ ] Implementar funcionalidad al bonus.
+- [x] Implementar funcionalidad al bonus.
+- [x] Confirmar que el contenido en habitaciones no aparezca al revisitar.
+- [x] Hacer función que calcule la **distancia Manhattan**. 
 - [ ] Método `obtener_estadisticas_mapa()` en `Mapa`:
   - [ ] Total de habitaciones.
   - [ ] Distribución por tipo.
@@ -45,7 +52,8 @@
   - [ ] `mostrar_habitacion_actual()`.
   - [ ] `mostrar_minimapa()` (solo visitadas).
   - [ ] `mostrar_estado_explorador()`.
-- [ ] `main.py` actualizado con demo interactiva simple.
+
+- [ ] `main.py` actualizado con demo simple.
 
 ---
 
@@ -54,17 +62,15 @@
 - [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
 - [ ] Serialización evita ciclos (usa coordenadas).
 - [ ] Contenidos serializados con campo `"tipo"`.
-- [ ] Dependencia `rich` registrada en `pyproject.toml`.
+- [x] Dependencia `rich` registrada en `pyproject.toml`.
 
 ---
 
 ## Día 5 — Pulido, QA y entrega final
 - [ ] Restringir habitaciones a un mínimo.
-- [ ] Ajuste de porcentajes (resto → vacías).
-- [ ] Garantizado ≥1 Jefe (si no, se reemplaza uno).
 - [ ] Eventos probados: trampa, fuente, portal, bonificación.
 - [ ] Buffs temporales aplicados y decrementados correctamente.
-- [ ] Arreglar estadísticas de monstruos.
+- [ ] Arreglar estadísticas de monstruos/jefes.
 - [ ] Estadísticas revisadas en mapas pequeños y medianos.
 - [ ] Guardar/cargar probado y consistente.
 - [ ] README.md completo y actualizado.

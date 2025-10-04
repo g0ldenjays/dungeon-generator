@@ -136,6 +136,11 @@ class Mapa:
 			if 0 <= nx < self.ancho and 0 <= ny < self.alto:
 				res.append(((nx, ny), d1, d2))
 		return res
+	
+	def _distancia_desde_inicial(self, pos):
+		"""Distancia Manhattan desde 'pos' hasta la habitación inicial."""
+		x0, y0 = self.habitacion_inicial.posicion
+		return abs(pos[0] - x0) + abs(pos[1] - y0)
 
 	def todas_accesibles(self) -> bool:
 		# BFS para verificar que todas las habitaciones se puedan alcanzar
@@ -201,22 +206,20 @@ class Mapa:
 		]
 
 		posibles_eventos = [
-			("Trampa", "Un mecanismo oculto se activa", "trampa"),
-			("Fuente", "Agua mágica que restaura vida", "fuente"),
-			("Portal", "Algo se materializa", "portal"),
+			("Bendicion", "La sala estaba bendecida", "bonificacion", False),
+			("Trampa", "Un mecanismo oculto se activa", "trampa", False),
+			("Fuente de las hadas", "Fuente con hadas brillantes", "fuente", False),
+			("Portal", "Algo se materializa", "portal", False),
 		]
 
 	# Asignación de contenido en habitaciones:
-
-	# Respecto al reiterado cálculo de distancia, se intentó calcular de una vez fuera de los ciclos.
-	# Resultó ser menos conveniente. Se hará función en un futuro para mejor claridad.
 
 		# Asignar jefes
 		for i in range(n_jefes):
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			distancia= abs(hab.posicion[0] - self.habitacion_inicial.posicion[0]) + abs(hab.posicion[1] - self.habitacion_inicial.posicion[1])
+			distancia = self._distancia_desde_inicial(hab.posicion)
 			nombre, base_hp, base_atk, recompensa = random.choice(posibles_jefes)
 			hab.contenido = Jefe(
 				nombre,
@@ -230,7 +233,7 @@ class Mapa:
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			distancia= abs(hab.posicion[0] - self.habitacion_inicial.posicion[0]) + abs(hab.posicion[1] - self.habitacion_inicial.posicion[1])
+			distancia = self._distancia_desde_inicial(hab.posicion)
 			nombre, base_hp, base_atk = random.choice(posibles_monstruos)
 			hab.contenido = Monstruo(
 				nombre,
@@ -243,7 +246,7 @@ class Mapa:
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			distancia = abs(hab.posicion[0] - self.habitacion_inicial.posicion[0]) + abs(hab.posicion[1] - self.habitacion_inicial.posicion[1])
+			distancia = self._distancia_desde_inicial(hab.posicion)
 			nombre, valor, desc = random.choice(posibles_tesoros)
 			objeto = Objeto(nombre, valor=valor + distancia, descripcion=desc)
 			hab.contenido = Tesoro(objeto)
@@ -253,8 +256,8 @@ class Mapa:
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			nombre, desc, efecto = random.choice(posibles_eventos)
-			hab.contenido = Evento(nombre, desc, efecto)
+			nombre, desc, efecto, usado = random.choice(posibles_eventos)
+			hab.contenido = Evento(nombre, desc, efecto, usado)
 
 		# El resto vacías
 		for hab in habitaciones_disponibles:

@@ -1,17 +1,28 @@
 class Explorador:
 	def __init__(self, mapa, posicion_inicial):
 		self.vida = 150
-		self.inventario = [] # lista de Objetos
+		self.inventario = []
 		self.posicion_actual = posicion_inicial
 		self.mapa = mapa
+
+		self.bonus_ataque = 0 # Daño extra
+		self.bonus_prob = 0.0 # Probabilidad extra
+		self.bonus_duracion = 0 # Habitaciones restantes antes de acabarse
  
 	# Moverse a una dirección
 	def mover(self, direccion):
 		habitacion = self.mapa.habitaciones[self.posicion_actual]
 		if direccion in habitacion.conexiones:
 			self.posicion_actual = habitacion.conexiones[direccion]
-			return True
-		return False
+
+	    # Lógica bonus
+		if self.bonus_duracion > 0:
+			self.bonus_duracion -= 1
+			if self.bonus_duracion == 0:
+				self.bonus_ataque = 0
+				self.bonus_prob = 0.0
+
+		return True
 
 	# Explorar la habitación actual
 	def explorar_habitacion(self):
@@ -40,3 +51,9 @@ class Explorador:
 	@property
 	def esta_vivo(self):
 		return self.vida > 0
+	
+	def aplicar_bonificacion(self, potencia, atk, prob):
+		self.bonus_restantes = max(1, int(potencia))
+		self.bonus_ataque = max(0, int(atk))
+		p = float(prob)
+		self.bonus_prob = potencia

@@ -5,12 +5,12 @@ import random
 def obtener_tipo_contenido(hab):
 	if hab is None or hab.contenido is None:
 		return "nada"
-	return hab.contenido.tipo
+	return hab.contenido.descripcion
 
 def main():
 	n = 20 # número de habitaciones a explorar
 	mapa = Mapa(ancho=8, alto=8)
-	mapa.generar_estructura(n_habitaciones=n, seed=6174)
+	mapa.generar_estructura(n_habitaciones=n, seed=61742)
 	mapa.decorar()
 
 	explorador = Explorador(mapa, mapa.habitacion_inicial.posicion)
