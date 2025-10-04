@@ -14,24 +14,28 @@
 - [x] Conexiones consistentes (ida y vuelta).
 - [x] `main.py` imprime datos básicos y ejemplo de conexiones.
 
+- [x] Testeo aprobado
+
 ---
 
 ## Día 2 — Contenidos y Explorador
-- [ ] Clases de contenido: `ContenidoHabitacion` (abstracta), `Tesoro`, `Monstruo`, `Jefe`, `Evento`.
-- [ ] Clase `Objeto` creada (nombre, valor, descripción).
-- [ ] Clase `Explorador` creada con: mover, explorar, recibir daño, inventario, estado.
-- [ ] `Mapa.colocar_contenido()` reparte porcentajes:
-  - [ ] Al menos un jefe. (2%)
-  - [ ] Monstruos.  (43%)
-  - [ ] Tesoros.  (25%)
-  - [ ] Eventos.  (10%)
-  - [ ] Resto vacías.
-- [ ] Dificultad y valores escalan con **distancia Manhattan**.
-- [ ] Reglas de combate simples (probabilidades) funcionando.
+- [x] Clases de contenido: `ContenidoHabitacion` (abstracta), `Tesoro`, `Monstruo`, `Jefe`, `Evento`.
+- [x] Clase `Objeto` creada (nombre, valor, descripción).
+- [x] Clase `Explorador` creada con: mover, explorar, recibir daño, inventario, estado.
+- [x] `Mapa.colocar_contenido()` reparte porcentajes:
+  - [x] Al menos un jefe. (2% para que haya jefe extra) (Con estadísticas bajas para probar combate/recompensas)
+  - [x] Monstruos.  (27%) (Con estadísticas bajas para probar combate/recompensas)
+  - [x] Tesoros.  (15%)
+  - [x] Eventos.  (10%) (Bonificación bonus aún no implementado, el resto sí)
+  - [x] Resto vacías. (46%)
+- [x] Dificultad y valores escalan con **distancia Manhattan**.
+- [x] Reglas de combate simples (probabilidades) funcionando.
 
+- [x] Testeo aprobado
 ---
 
 ## Día 3 — Visualización y estadísticas
+- [ ] Implementar funcionalidad al bonus.
 - [ ] Método `obtener_estadisticas_mapa()` en `Mapa`:
   - [ ] Total de habitaciones.
   - [ ] Distribución por tipo.
@@ -55,10 +59,12 @@
 ---
 
 ## Día 5 — Pulido, QA y entrega final
+- [ ] Restringir habitaciones a un mínimo.
 - [ ] Ajuste de porcentajes (resto → vacías).
 - [ ] Garantizado ≥1 Jefe (si no, se reemplaza uno).
 - [ ] Eventos probados: trampa, fuente, portal, bonificación.
 - [ ] Buffs temporales aplicados y decrementados correctamente.
+- [ ] Arreglar estadísticas de monstruos.
 - [ ] Estadísticas revisadas en mapas pequeños y medianos.
 - [ ] Guardar/cargar probado y consistente.
 - [ ] README.md completo y actualizado.

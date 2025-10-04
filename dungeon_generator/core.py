@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import random
+from dungeon_generator.content import Tesoro, Monstruo, Jefe, Evento, Objeto
 
 
 # Clase Habitacion
@@ -21,7 +22,7 @@ class Habitacion:
 		self.inicial: bool = inicial
 		self.visitada: bool = False
 		self.conexiones: dict[str, tuple[int, int]] = {}
-		self.contenido: str | None = None # aquí iría el contenido de la habitación (enemigos, tesoros, etc.)
+		self.contenido = None # aquí iría el contenido de la habitación (enemigos, tesoros, etc.)
 
 # ---------------------------------------------------------
 
@@ -121,7 +122,7 @@ class Mapa:
 		return x == 0 or x == self.ancho - 1 or y == 0 or y == self.alto - 1
 
 	def vecinos_validos(self, posicion: tuple[int, int]) -> list[tuple[tuple[int, int], str, str]]:
-		# Devuelve lista de (nx, ny, dir_desde_actual, dir_desde_nuevo)
+		# Devuelve lista de ( (nx, ny), dir_desde_actual, dir_desde_nuevo)
 		movimientos = [
 			((0, -1), "norte", "sur"),
 			((0, 1), "sur", "norte"),
@@ -154,3 +155,108 @@ class Mapa:
 					cola.append((nx, ny))
 
 		return len(visitadas) == len(self.habitaciones)
+	
+	def decorar(self):
+		"""
+		Reparte el contenido de las habitaciones según los porcentajes definidos en el README:
+
+		- Jefes: 2% (al menos 1).
+		- Monstruos: 27%.
+		- Tesoros: 15%.
+		- Eventos: 10%.
+		- Resto vacías.
+
+		"""
+
+		# La inicial no lleva contenido
+		habitaciones_disponibles = [h for h in self.habitaciones.values() if not h.inicial]
+		total = len(habitaciones_disponibles)
+		random.shuffle(habitaciones_disponibles)
+
+		# Cálculo de cantidades
+		n_jefes = max(1, round(total * 0.02))
+		n_monstruos = round(total * 0.27)
+		n_tesoros = round(total * 0.15)
+		n_eventos = round(total * 0.10)
+
+		# Contenidos
+		posibles_jefes = [
+			("Gleeok", 1, 3, Objeto("Cuerno de Gleeok", 40, "Poderoso cuerno pesado")),
+			("Stalhinox", 1, 2, Objeto("Ojo de Stalhinox", 35, "Gelatinoso... y parpadeante")),
+			("Centaleón", 1, 4, Objeto("Corazón de Centaleón", 30, "Aún palpita con fuerza")),
+		]
+
+		posibles_monstruos = [
+			("Bokoblin", 1, 1),
+			("Moblin", 1, 2),
+			("Keese", 1, 1),
+		]
+
+		posibles_tesoros = [
+			("Roca suave", 2, "Roca fina que parece especial"),
+			("Chapa metálica", 4, "Tiene algo grabado, aún brilla un poco"),
+			("Reloj de oro", 6, "Tic tac... Tic... Y ya se le acabó la pila"),
+			("Anillo con diamante", 10, "El brillo te encandila"),
+			("Espada de esmeralda", 12, "Se ve pixelada..."),
+		]
+
+		posibles_eventos = [
+			("Trampa", "Un mecanismo oculto se activa", "trampa"),
+			("Fuente", "Agua mágica que restaura vida", "fuente"),
+			("Portal", "Algo se materializa", "portal"),
+		]
+
+	# Asignación de contenido en habitaciones:
+
+	# Respecto al reiterado cálculo de distancia, se intentó calcular de una vez fuera de los ciclos.
+	# Resultó ser menos conveniente. Se hará función en un futuro para mejor claridad.
+
+		# Asignar jefes
+		for i in range(n_jefes):
+			if not habitaciones_disponibles:
+				break
+			hab = habitaciones_disponibles.pop()
+			distancia= abs(hab.posicion[0] - self.habitacion_inicial.posicion[0]) + abs(hab.posicion[1] - self.habitacion_inicial.posicion[1])
+			nombre, base_hp, base_atk, recompensa = random.choice(posibles_jefes)
+			hab.contenido = Jefe(
+				nombre,
+				vida=base_hp + distancia,
+				ataque=base_atk + distancia// 2,
+				recompensa_especial=recompensa
+			)
+
+		# Asignar Monstruos
+		for i in range(n_monstruos):
+			if not habitaciones_disponibles:
+				break
+			hab = habitaciones_disponibles.pop()
+			distancia= abs(hab.posicion[0] - self.habitacion_inicial.posicion[0]) + abs(hab.posicion[1] - self.habitacion_inicial.posicion[1])
+			nombre, base_hp, base_atk = random.choice(posibles_monstruos)
+			hab.contenido = Monstruo(
+				nombre,
+				vida=base_hp + distancia// 2,
+				ataque=base_atk + distancia// 3
+			)
+
+		# Asignar Tesoros
+		for i in range(n_tesoros):
+			if not habitaciones_disponibles:
+				break
+			hab = habitaciones_disponibles.pop()
+			distancia = abs(hab.posicion[0] - self.habitacion_inicial.posicion[0]) + abs(hab.posicion[1] - self.habitacion_inicial.posicion[1])
+			nombre, valor, desc = random.choice(posibles_tesoros)
+			objeto = Objeto(nombre, valor=valor + distancia, descripcion=desc)
+			hab.contenido = Tesoro(objeto)
+
+		# Asignar Eventos
+		for i in range(n_eventos):
+			if not habitaciones_disponibles:
+				break
+			hab = habitaciones_disponibles.pop()
+			nombre, desc, efecto = random.choice(posibles_eventos)
+			hab.contenido = Evento(nombre, desc, efecto)
+
+		# El resto vacías
+		for hab in habitaciones_disponibles:
+			hab.contenido = None
+

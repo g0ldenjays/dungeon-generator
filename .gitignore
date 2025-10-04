@@ -1,0 +1,4 @@
+.vscode/
+.python-version
+uv.lock
+__pycache__/
