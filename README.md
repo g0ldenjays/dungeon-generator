@@ -36,6 +36,7 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 - [x] Todas las habitaciones son **accesibles** (conectividad total).
 - [x] Conexiones consistentes (ida y vuelta).
 - [x] `main.py` imprime datos básicos y ejemplo de conexiones.
+- [x] Dependencia `rich` registrada en `pyproject.toml`.
 
 - [x] Testeo aprobado
 
@@ -80,22 +81,23 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 ---
 
 ### Día 4 — Serialización JSON y documentación
-- [ ] `guardar_partida(mapa, explorador, archivo)` implementado.
-- [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
-- [ ] Contenidos serializados con campo `"tipo"`.
-- [x] Dependencia `rich` registrada en `pyproject.toml`.
-- [ ] Arreglar lógica de movimiento, hacerla más intuitiva.
+- [x] Arreglar lógica de movimiento, hacerla más intuitiva.
+- [x] Módulo `utils.py` con herramientas para la demo completo.
+- [x] `main.py` actualizado con demo simple.
+- #### Con una demo sólida:
+  - [ ] `guardar_partida(mapa, explorador, archivo)` implementado.
+  - [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
+  - [ ] Contenidos serializados con campo `"tipo"`.
 
-- [ ] `main.py` actualizado con demo simple.
 
 ---
 
 ### Día 5 — Pulido, QA y entrega final
 - [ ] Restringir habitaciones/tamaño de mapa a un mínimo.
 - [x] Eventos probados: trampa, fuente, portal, bonificación.
-- [ ] Arreglar estadísticas de monstruos/jefes.
+- [x] Arreglar estadísticas de monstruos/jefes.
 - [x] Estadísticas revisadas en mapas pequeños y medianos.
 - [ ] Guardar/cargar probado y consistente.
 - [ ] README.md completo y actualizado.
-- [ ] `main.py` corre sin errores.
+- [x] `main.py` corre sin errores.
 - [ ] Último commit.

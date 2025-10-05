@@ -233,14 +233,14 @@ class Mapa:
 
 		# Contenidos
 		posibles_jefes = [
-			("Gleeok", 1, 3, Objeto("Cuerno de Gleeok", 40, "Poderoso cuerno pesado")),
-			("Stalhinox", 1, 2, Objeto("Ojo de Stalhinox", 35, "Gelatinoso... y parpadeante")),
-			("Centaleón", 1, 4, Objeto("Corazón de Centaleón", 30, "Aún palpita con fuerza")),
+			("Gleeok", 4, 3, Objeto("Cuerno de Gleeok", 40, "Poderoso cuerno pesado")),
+			("Stalhinox", 3, 2, Objeto("Ojo de Stalhinox", 35, "Gelatinoso... y parpadeante")),
+			("Centaleón", 2, 3, Objeto("Corazón de Centaleón", 30, "Aún palpita con fuerza")),
 		]
 
 		posibles_monstruos = [
-			("Bokoblin", 1, 1),
-			("Moblin", 1, 2),
+			("Bokoblin", 1, 2),
+			("Moblin", 2, 2),
 			("Keese", 1, 1),
 		]
 
