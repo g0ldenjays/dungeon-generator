@@ -97,9 +97,10 @@ class Monstruo(ContenidoHabitacion):
 
 # Jefe (hereda de Monstruo)
 class Jefe(Monstruo):
-	def __init__(self, nombre, vida, ataque, recompensa_especial):
+	def __init__(self, nombre, vida, ataque, recompensa_especial, muerto=False):
 		super().__init__(nombre, vida, ataque)
 		self.recompensa_especial = recompensa_especial
+		self.muerto = muerto
 
 	@property
 	def descripcion(self):
@@ -121,9 +122,12 @@ class Jefe(Monstruo):
 				texto.append(f"El {self.nombre} te golpea. Te queda {explorador.vida} de vida.")
 
 		if self.vida <= 0:
-			texto.append(f"¡Derrotaste al jefe {self.nombre}!")
-			explorador.inventario.append(self.recompensa_especial)
-			texto.append(f"Obtienes una recompensa especial: {self.recompensa_especial}")
+			texto.append(f"{self.nombre} Derrotado.")
+			
+			if self.muerto == False:
+				explorador.inventario.append(self.recompensa_especial)
+				texto.append(f"Obtienes una recompensa especial: {self.recompensa_especial}")
+				self.muerto = True
 		else:
 			texto.append("Has sido derrotado por el jefe...")
 

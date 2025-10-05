@@ -13,7 +13,7 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 |  # | Requerimiento                                              | Estado          | Observación                                                                                                                                           |
 | -: | ---------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 |  1 | Clase `Habitacion` y sus atributos                         | **Cumplido**    | [No hay observación]                                                                                                                                  |
-|  2 | Clase `Mapa` con lo solicitado                             | **Parcial**     | La cantidad de habitaciones / tamaño del mapa siguen siendo datos que el usuario no puede cambiar. Se trabajará en ello.                              |
+|  2 | Clase `Mapa` con lo solicitado                             | **Parcial**     | La cantidad de habitaciones / tamaño del mapa ahora son ingresables. Falta pulir el ingreso. |
 |  3 | Clase `Objeto` con atributos                               | **Cumplido**    | [No hay observación]                                                                                                                                  |
 |  4 | Clase `Explorador` con sus atributos                       | **Cumplido**    | [No hay observación]                                                                                                                                  |
 |  5 | Clase abstracta `ContenidoHabitacion` y sus hijas          | **Cumplido**    | Se agregaron 3 jefes (con sus recompensas) y 3 monstruos. Para los tesoros se agregaron 5 objetos distintos.                                          |
@@ -89,6 +89,9 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
   - [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
   - [ ] Contenidos serializados con campo `"tipo"`.
 
+#### Post push:
+
+- [x] Arreglado: Jefes derrotados seguían dando recompensas al revisitar sus salas.
 
 ---
 
