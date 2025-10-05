@@ -1,6 +1,7 @@
 from dungeon_generator.visual import Visualizador
-import random
-import os
+from dungeon_generator.save import guardar_datos
+from datetime import datetime
+import random, os
 
 # Utilidades para el main.py
 def limpiar_pantalla():
@@ -40,9 +41,20 @@ def obtener_tipo_contenido(hab):
 	return str(t) if t else "contenido"
 
 # Acciones del menú
-def mostrar_mensaje_guardar():
-	# Aquí estará guardar_partida()
-	print("\n[ GUARDAR ] Esta función aún no está implementada.")
+def guardar_partida(mapa, explorador):
+
+	print("\n[ GUARDARNDO... ]")
+
+	if not os.path.exists("saves"):
+		os.makedirs("saves", exist_ok=True)
+
+	tiempo = datetime.now().strftime("%Y-%m-%d_%H.%M.%S")
+	nombre = f"save_{tiempo}.json"
+
+	ruta = os.path.join("saves", nombre)
+
+	print("\n[ GUARDADO EXITOSO ]")
+	guardar_datos(mapa, explorador, ruta)
 	input("Presiona ENTER para continuar...")
 
 def mostrar_mensaje_cargar():
@@ -65,6 +77,11 @@ def avanzar_un_paso(mapa, explorador, visitadas, ultimo_pos):
 		return ultimo_pos # no cambia
 
 	dir_elegida = None
+
+	# Por alguna razón no se marca sola en el minimapa al comenzar XD
+	if explorador.posicion_actual == mapa.habitacion_inicial.posicion and mapa.habitacion_inicial.posicion not in visitadas:
+		mapa.habitacion_inicial.visitada = True
+		
 
 	# Buscar una no visitada
 	for d, pos in conexiones.items():

@@ -1,0 +1,837 @@
+{
+    "mapa": {
+        "ancho": 8,
+        "alto": 8,
+        "habitacion_inicial": [
+            0,
+            1
+        ],
+        "habitaciones": [
+            {
+                "id": 0,
+                "posicion": [
+                    0,
+                    1
+                ],
+                "inicial": true,
+                "visitada": true,
+                "conexiones": {
+                    "norte": [
+                        0,
+                        0
+                    ],
+                    "este": [
+                        1,
+                        1
+                    ],
+                    "sur": [
+                        0,
+                        2
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 1,
+                "posicion": [
+                    0,
+                    0
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "sur": [
+                        0,
+                        1
+                    ],
+                    "este": [
+                        1,
+                        0
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Keese",
+                    "vida": 0,
+                    "ataque": 1
+                }
+            },
+            {
+                "id": 2,
+                "posicion": [
+                    1,
+                    0
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "oeste": [
+                        0,
+                        0
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Bokoblin",
+                    "vida": 0,
+                    "ataque": 2
+                }
+            },
+            {
+                "id": 3,
+                "posicion": [
+                    1,
+                    1
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "oeste": [
+                        0,
+                        1
+                    ],
+                    "sur": [
+                        1,
+                        2
+                    ],
+                    "este": [
+                        2,
+                        1
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 4,
+                "posicion": [
+                    0,
+                    2
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        0,
+                        1
+                    ],
+                    "sur": [
+                        0,
+                        3
+                    ]
+                },
+                "contenido": {
+                    "tipo": "evento",
+                    "nombre": "Bendicion",
+                    "efecto": "bonificacion",
+                    "descripcion": "Evento: La sala estaba bendecida"
+                }
+            },
+            {
+                "id": 5,
+                "posicion": [
+                    1,
+                    2
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "norte": [
+                        1,
+                        1
+                    ],
+                    "sur": [
+                        1,
+                        3
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 6,
+                "posicion": [
+                    2,
+                    1
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        1,
+                        1
+                    ],
+                    "este": [
+                        3,
+                        1
+                    ],
+                    "norte": [
+                        2,
+                        0
+                    ],
+                    "sur": [
+                        2,
+                        2
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 7,
+                "posicion": [
+                    3,
+                    1
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        2,
+                        1
+                    ],
+                    "norte": [
+                        3,
+                        0
+                    ],
+                    "sur": [
+                        3,
+                        2
+                    ],
+                    "este": [
+                        4,
+                        1
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Moblin",
+                    "vida": 3,
+                    "ataque": 3
+                }
+            },
+            {
+                "id": 8,
+                "posicion": [
+                    2,
+                    0
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "sur": [
+                        2,
+                        1
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Moblin",
+                    "vida": 3,
+                    "ataque": 3
+                }
+            },
+            {
+                "id": 9,
+                "posicion": [
+                    2,
+                    2
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        2,
+                        1
+                    ],
+                    "sur": [
+                        2,
+                        3
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 10,
+                "posicion": [
+                    3,
+                    0
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "sur": [
+                        3,
+                        1
+                    ],
+                    "este": [
+                        4,
+                        0
+                    ]
+                },
+                "contenido": {
+                    "tipo": "tesoro",
+                    "objeto": {
+                        "nombre": "Espada de esmeralda",
+                        "valor": 16,
+                        "descripcion": "Se ve pixelada..."
+                    }
+                }
+            },
+            {
+                "id": 11,
+                "posicion": [
+                    3,
+                    2
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        3,
+                        1
+                    ],
+                    "este": [
+                        4,
+                        2
+                    ],
+                    "sur": [
+                        3,
+                        3
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Bokoblin",
+                    "vida": 3,
+                    "ataque": 3
+                }
+            },
+            {
+                "id": 12,
+                "posicion": [
+                    4,
+                    1
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        3,
+                        1
+                    ],
+                    "este": [
+                        5,
+                        1
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Bokoblin",
+                    "vida": 3,
+                    "ataque": 3
+                }
+            },
+            {
+                "id": 13,
+                "posicion": [
+                    0,
+                    3
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        0,
+                        2
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 14,
+                "posicion": [
+                    4,
+                    2
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        3,
+                        2
+                    ],
+                    "este": [
+                        5,
+                        2
+                    ],
+                    "sur": [
+                        4,
+                        3
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 15,
+                "posicion": [
+                    3,
+                    3
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        3,
+                        2
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 16,
+                "posicion": [
+                    1,
+                    3
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "norte": [
+                        1,
+                        2
+                    ],
+                    "sur": [
+                        1,
+                        4
+                    ]
+                },
+                "contenido": {
+                    "tipo": "tesoro",
+                    "objeto": {
+                        "nombre": "Roca suave",
+                        "valor": 5,
+                        "descripcion": "Roca fina que parece especial"
+                    }
+                }
+            },
+            {
+                "id": 17,
+                "posicion": [
+                    2,
+                    3
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        2,
+                        2
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 18,
+                "posicion": [
+                    5,
+                    1
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        4,
+                        1
+                    ],
+                    "este": [
+                        6,
+                        1
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 19,
+                "posicion": [
+                    1,
+                    4
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "norte": [
+                        1,
+                        3
+                    ],
+                    "oeste": [
+                        0,
+                        4
+                    ],
+                    "sur": [
+                        1,
+                        5
+                    ],
+                    "este": [
+                        2,
+                        4
+                    ]
+                },
+                "contenido": {
+                    "tipo": "tesoro",
+                    "objeto": {
+                        "nombre": "Chapa metálica",
+                        "valor": 8,
+                        "descripcion": "Tiene algo grabado, aún brilla un poco"
+                    }
+                }
+            },
+            {
+                "id": 20,
+                "posicion": [
+                    4,
+                    0
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        3,
+                        0
+                    ],
+                    "este": [
+                        5,
+                        0
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 21,
+                "posicion": [
+                    5,
+                    2
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        4,
+                        2
+                    ]
+                },
+                "contenido": {
+                    "tipo": "evento",
+                    "nombre": "Trampa",
+                    "efecto": "trampa",
+                    "descripcion": "Evento: Un mecanismo oculto se activa"
+                }
+            },
+            {
+                "id": 22,
+                "posicion": [
+                    4,
+                    3
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        4,
+                        2
+                    ],
+                    "sur": [
+                        4,
+                        4
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Moblin",
+                    "vida": 5,
+                    "ataque": 4
+                }
+            },
+            {
+                "id": 23,
+                "posicion": [
+                    0,
+                    4
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "este": [
+                        1,
+                        4
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 24,
+                "posicion": [
+                    1,
+                    5
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "norte": [
+                        1,
+                        4
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 25,
+                "posicion": [
+                    2,
+                    4
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "oeste": [
+                        1,
+                        4
+                    ],
+                    "este": [
+                        3,
+                        4
+                    ],
+                    "sur": [
+                        2,
+                        5
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Moblin",
+                    "vida": 0,
+                    "ataque": 3
+                }
+            },
+            {
+                "id": 26,
+                "posicion": [
+                    4,
+                    4
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        4,
+                        3
+                    ]
+                },
+                "contenido": {
+                    "tipo": "monstruo",
+                    "nombre": "Bokoblin",
+                    "vida": 4,
+                    "ataque": 4
+                }
+            },
+            {
+                "id": 27,
+                "posicion": [
+                    5,
+                    0
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        4,
+                        0
+                    ]
+                },
+                "contenido": {
+                    "tipo": "evento",
+                    "nombre": "Portal",
+                    "efecto": "portal",
+                    "descripcion": "Evento: Una grieta en el espacio tiempo se abre"
+                }
+            },
+            {
+                "id": 28,
+                "posicion": [
+                    3,
+                    4
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "oeste": [
+                        2,
+                        4
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 29,
+                "posicion": [
+                    2,
+                    5
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "norte": [
+                        2,
+                        4
+                    ],
+                    "este": [
+                        3,
+                        5
+                    ]
+                },
+                "contenido": {
+                    "tipo": "tesoro",
+                    "objeto": {
+                        "nombre": "Anillo con diamante",
+                        "valor": 16,
+                        "descripcion": "El brillo te encandila"
+                    }
+                }
+            },
+            {
+                "id": 30,
+                "posicion": [
+                    6,
+                    1
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        5,
+                        1
+                    ],
+                    "sur": [
+                        6,
+                        2
+                    ],
+                    "norte": [
+                        6,
+                        0
+                    ],
+                    "este": [
+                        7,
+                        1
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 31,
+                "posicion": [
+                    6,
+                    2
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "norte": [
+                        6,
+                        1
+                    ]
+                },
+                "contenido": {
+                    "tipo": "jefe",
+                    "nombre": "Gleeok",
+                    "vida": 11,
+                    "ataque": 6,
+                    "recompensa_especial": {
+                        "nombre": "Cuerno de Gleeok",
+                        "valor": 40,
+                        "descripcion": "Poderoso cuerno pesado"
+                    }
+                }
+            },
+            {
+                "id": 32,
+                "posicion": [
+                    6,
+                    0
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "sur": [
+                        6,
+                        1
+                    ]
+                },
+                "contenido": {
+                    "tipo": "tesoro",
+                    "objeto": {
+                        "nombre": "Roca suave",
+                        "valor": 9,
+                        "descripcion": "Roca fina que parece especial"
+                    }
+                }
+            },
+            {
+                "id": 33,
+                "posicion": [
+                    7,
+                    1
+                ],
+                "inicial": false,
+                "visitada": false,
+                "conexiones": {
+                    "oeste": [
+                        6,
+                        1
+                    ]
+                },
+                "contenido": null
+            },
+            {
+                "id": 34,
+                "posicion": [
+                    3,
+                    5
+                ],
+                "inicial": false,
+                "visitada": true,
+                "conexiones": {
+                    "oeste": [
+                        2,
+                        5
+                    ]
+                },
+                "contenido": null
+            }
+        ]
+    },
+    "explorador": {
+        "vida": 7,
+        "posicion_actual": [
+            2,
+            5
+        ],
+        "inventario": [
+            {
+                "nombre": "Roca suave",
+                "valor": 5,
+                "descripcion": "Roca fina que parece especial"
+            },
+            {
+                "nombre": "Chapa metálica",
+                "valor": 8,
+                "descripcion": "Tiene algo grabado, aún brilla un poco"
+            },
+            {
+                "nombre": "Anillo con diamante",
+                "valor": 16,
+                "descripcion": "El brillo te encandila"
+            }
+        ],
+        "bonus_ataque": 0,
+        "bonus_prob": 0.0,
+        "bonus_duracion": 0,
+        "bonus_total": 0
+    }
+}

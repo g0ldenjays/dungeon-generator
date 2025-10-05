@@ -85,9 +85,9 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 - [x] Módulo `utils.py` con herramientas para la demo completo.
 - [x] `main.py` actualizado con demo simple.
 - #### Con una demo sólida:
-  - [ ] `guardar_partida(mapa, explorador, archivo)` implementado.
+  - [x] Contenidos serializados con campo `"tipo"`.
+  - [x] `guardar_partida(mapa, explorador, archivo)` implementado.
   - [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
-  - [ ] Contenidos serializados con campo `"tipo"`.
 
 #### Post push:
 

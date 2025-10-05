@@ -1,7 +1,7 @@
 from dungeon_generator.explorer import Explorador
 from dungeon_generator.core import Mapa
 from dungeon_generator.visual import Visualizador
-from dungeon_generator.utils import pedir_entero, confirmar_salida, renderizar, mostrar_mensaje_guardar, mostrar_mensaje_cargar, avanzar_un_paso
+from dungeon_generator.utils import pedir_entero, confirmar_salida, renderizar, guardar_partida, mostrar_mensaje_cargar, avanzar_un_paso
 
 def main():
 	print("Parámetros del mapa (ENTER para valores por defecto):")
@@ -35,7 +35,7 @@ def main():
 			vista = "general"
 			continue
 		elif comando == "3":
-			mostrar_mensaje_guardar()
+			guardar_partida(mapa, explorador)
 			continue
 		elif comando == "4":
 			mostrar_mensaje_cargar()
@@ -48,6 +48,10 @@ def main():
 		else:
 			# Avanzar una sala
 			ultimo_pos, mensajes = avanzar_un_paso(mapa, explorador, visitadas, ultimo_pos)
+		
+		if len(visitadas) == len(mapa.habitaciones):
+			print("¡Has explorado todas las habitaciones!")
+			break
 
 	# Fin de juego
 	print("\nExploración terminada.")
