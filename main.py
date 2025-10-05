@@ -1,6 +1,8 @@
 from dungeon_generator.core import Mapa
 from dungeon_generator.explorer import Explorador
+from dungeon_generator.visual import Visualizador
 import random
+import os
 
 def obtener_tipo_contenido(hab):
 	if hab is None or hab.contenido is None:
@@ -8,9 +10,12 @@ def obtener_tipo_contenido(hab):
 	return hab.contenido.descripcion
 
 def main():
-	n = 20 # número de habitaciones a explorar
+	os.system('cls' if os.name == 'nt' else 'clear')
+	
+	vis = Visualizador()
+	n = 35 # número de habitaciones a explorar
 	mapa = Mapa(ancho=8, alto=8)
-	mapa.generar_estructura(n_habitaciones=n, seed=61742)
+	mapa.generar_estructura(n_habitaciones=n, seed=6147)
 	mapa.decorar()
 
 	explorador = Explorador(mapa, mapa.habitacion_inicial.posicion)
@@ -24,9 +29,9 @@ def main():
 	print(f"Explorador en {explorador.posicion_actual}, hay: {obtener_tipo_contenido(hab)}")
 	explorador.explorar_habitacion()
 
-	# Límite de seguridad por si el explorador se atrapa, evitar flood en consola
-	pasos_max = 30
-	# En un futuro se dará la opción de solo habitaciones nuevas
+	# Se fija un único paso para mostrar que el mapa funciona y se ve bien.
+	# Si se aumenta se pueden ver los movimientos.
+	pasos_max = 0
 
 	# Ciclo con lógica de exploración
 	while len(visitadas) < objetivo and explorador.esta_vivo and pasos_max > 0:
@@ -75,7 +80,13 @@ def main():
 			else:
 				ultimo_pos = prev
 
+	vis.mostrar_mapa_completo(mapa, explorador.posicion_actual)
+
 	print(f"Exploración terminada. Inventario: {[str(obj) for obj in explorador.inventario]}")
+
+
+	stats = mapa.obtener_estadisticas_mapa()
+	print(f"Estadísticas del mapa: {stats}")
 
 if __name__ == "__main__":
 	main()

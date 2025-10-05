@@ -106,6 +106,48 @@ class Mapa:
 			raise RuntimeError("Las habitaciones no quedaron todas conectadas")
 
 
+	# Estadíscas del mapa
+	def obtener_estadisticas_mapa(self):
+		total = len(self.habitaciones)
+		conteos = {"vacia": 0, "tesoro": 0, "monstruo": 0, "jefe": 0, "evento": 0}
+		total_conexiones = 0
+
+		for hab in self.habitaciones.values():
+			# Conexiones
+			total_conexiones += len(hab.conexiones)
+
+			# Contenidos
+			if hab.contenido is None:
+				conteos["vacia"] += 1
+			else:
+				try:
+					t = hab.contenido.tipo
+				except AttributeError:
+					t = None
+
+				if t == "tesoro":
+					conteos["tesoro"] += 1
+				elif t == "monstruo":
+					conteos["monstruo"] += 1
+				elif t == "jefe":
+					conteos["jefe"] += 1
+				elif t == "evento":
+					conteos["evento"] += 1
+				else:
+					conteos["vacia"] += 1
+
+		if total > 0:
+			promedio = total_conexiones / total
+		else:
+			promedio = 0.0
+
+		return {
+			"total_habitaciones": total,
+			"distribucion_por_tipo": conteos,
+			"promedio_conexiones": promedio,
+		}
+
+
 	# Métodos de ayuda internos
 	def posicion_borde(self) -> tuple[int, int]:
 		borde = random.choice(["arriba", "abajo", "izquierda", "derecha"])
@@ -137,11 +179,12 @@ class Mapa:
 				res.append(((nx, ny), d1, d2))
 		return res
 	
-	def _distancia_desde_inicial(self, pos):
+	def distancia_desde_inicial(self, pos):
 		"""Distancia Manhattan desde 'pos' hasta la habitación inicial."""
 		x0, y0 = self.habitacion_inicial.posicion
 		return abs(pos[0] - x0) + abs(pos[1] - y0)
-
+	
+	
 	def todas_accesibles(self) -> bool:
 		# BFS para verificar que todas las habitaciones se puedan alcanzar
 		if self.habitacion_inicial is None:
@@ -161,6 +204,10 @@ class Mapa:
 
 		return len(visitadas) == len(self.habitaciones)
 	
+
+
+
+	# Método más contundente
 	def decorar(self):
 		"""
 		Reparte el contenido de las habitaciones según los porcentajes definidos en el README:
@@ -219,7 +266,7 @@ class Mapa:
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			distancia = self._distancia_desde_inicial(hab.posicion)
+			distancia = self.distancia_desde_inicial(hab.posicion)
 			nombre, base_hp, base_atk, recompensa = random.choice(posibles_jefes)
 			hab.contenido = Jefe(
 				nombre,
@@ -233,7 +280,7 @@ class Mapa:
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			distancia = self._distancia_desde_inicial(hab.posicion)
+			distancia = self.distancia_desde_inicial(hab.posicion)
 			nombre, base_hp, base_atk = random.choice(posibles_monstruos)
 			hab.contenido = Monstruo(
 				nombre,
@@ -246,7 +293,7 @@ class Mapa:
 			if not habitaciones_disponibles:
 				break
 			hab = habitaciones_disponibles.pop()
-			distancia = self._distancia_desde_inicial(hab.posicion)
+			distancia = self.distancia_desde_inicial(hab.posicion)
 			nombre, valor, desc = random.choice(posibles_tesoros)
 			objeto = Objeto(nombre, valor=valor + distancia, descripcion=desc)
 			hab.contenido = Tesoro(objeto)
