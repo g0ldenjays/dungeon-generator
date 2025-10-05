@@ -35,20 +35,28 @@ class ContenidoHabitacion(ABC):
 
 # Tesoro
 class Tesoro(ContenidoHabitacion):
-	def __init__(self, objeto):
+	def __init__(self, objeto, usado=False):
 		self.objeto = objeto
+		self.usado = usado
 
 	@property
 	def descripcion(self):
-		return f"Un cofre que contiene {self.objeto.nombre}"
+		if self.usado == False:
+			return f"Un cofre que contiene {self.objeto.nombre}"
+		else:
+			return "Un cofre vacío"
 
 	@property
 	def tipo(self):
 		return "tesoro"
 
 	def interactuar(self, explorador):
-		explorador.inventario.append(self.objeto)
-		return f"Encontraste un tesoro: {self.objeto}"
+		if self.usado == False:
+			explorador.inventario.append(self.objeto)
+			self.usado = True
+			return f"Encontraste un tesoro: {self.objeto}"
+		else:
+			return "El cofre ya está vacío."
 
 
 # Monstruo
@@ -150,7 +158,7 @@ class Evento(ContenidoHabitacion):
 				self.usado = True
 			else:
 				texto.append("La trampa ya fue activada.")
-				
+
 		elif self.efecto == "fuente":
 			if self.usado == False:
 				explorador.vida += 1

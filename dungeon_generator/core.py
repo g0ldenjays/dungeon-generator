@@ -256,7 +256,7 @@ class Mapa:
 			("Bendicion", "La sala estaba bendecida", "bonificacion", False),
 			("Trampa", "Un mecanismo oculto se activa", "trampa", False),
 			("Fuente de las hadas", "Fuente con hadas brillantes", "fuente", False),
-			("Portal", "Algo se materializa", "portal", False),
+			("Portal", "Una grieta en el espacio tiempo se abre", "portal", False),
 		]
 
 	# Asignación de contenido en habitaciones:

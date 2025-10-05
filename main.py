@@ -20,18 +20,19 @@ def main():
 
 	explorador = Explorador(mapa, mapa.habitacion_inicial.posicion)
 
-	visitadas = set([explorador.posicion_actual])
+	visitadas = [explorador.posicion_actual]
 	objetivo = n
 	ultimo_pos = None
 
+	# 31 es el número de pasos para explorar un poco y caer en un portal y bendición, además de varios monstruos y tesoros
+	# Escriba 20 para ver que la parte de "¿Es nueva?" funciona
+	pasos_max = 20
+
 	# Explora inicial
 	hab = mapa.habitaciones[explorador.posicion_actual]
-	print(f"Explorador en {explorador.posicion_actual}, hay: {obtener_tipo_contenido(hab)}")
+	print(f"({pasos_max}) Explorador en {explorador.posicion_actual}, hay: {obtener_tipo_contenido(hab)}")
 	explorador.explorar_habitacion()
 
-	# Se fija un único paso para mostrar que el mapa funciona y se ve bien.
-	# Si se aumenta se pueden ver los movimientos.
-	pasos_max = 0
 
 	# Ciclo con lógica de exploración
 	while len(visitadas) < objetivo and explorador.esta_vivo and pasos_max > 0:
@@ -70,9 +71,12 @@ def main():
 		if explorador.mover(dir_elegida):
 			pos = explorador.posicion_actual
 			hab = mapa.habitaciones[pos]
-			print(f"Explorador en {pos}, hay: {obtener_tipo_contenido(hab)}")
+			print(f"({pasos_max}) Explorador en {explorador.posicion_actual}, hay: {obtener_tipo_contenido(hab)}")
 			explorador.explorar_habitacion()
-			visitadas.add(explorador.posicion_actual)
+			
+			if not visitadas or visitadas[-1] != pos:
+				if pos not in visitadas:
+					visitadas.append(pos)
 
 			# Si hubo portal olvida la ultima pos
 			if explorador.posicion_actual != pos:
@@ -81,6 +85,7 @@ def main():
 				ultimo_pos = prev
 
 	vis.mostrar_mapa_completo(mapa, explorador.posicion_actual)
+	vis.mostrar_habitacion_actual(mapa, explorador, visitadas)
 
 	print(f"Exploración terminada. Inventario: {[str(obj) for obj in explorador.inventario]}")
 

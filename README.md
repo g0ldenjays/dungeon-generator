@@ -72,7 +72,7 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
   - [X] Promedio de conexiones por habitación.
 - [x] Clase `Visualizador` con `rich`:
   - [x] `mostrar_mapa_completo()`.
-  - [ ] `mostrar_habitacion_actual()`.
+  - [x] `mostrar_habitacion_actual()`.
   - [ ] `mostrar_minimapa()` (solo visitadas con color).
   - [ ] `mostrar_estado_explorador()`.
 - [ ] Arreglar lógica de movimiento, hacerla más intuitiva.
@@ -90,12 +90,11 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 ---
 
 ### Día 5 — Pulido, QA y entrega final
-- [ ] Restringir habitaciones a un mínimo.
-- [ ] Eventos probados: trampa, fuente, portal, bonificación.
-- [ ] Buffs temporales aplicados y decrementados correctamente.
+- [ ] Restringir habitaciones/tamaño de mapa a un mínimo.
+- [x] Eventos probados: trampa, fuente, portal, bonificación.
 - [ ] Arreglar estadísticas de monstruos/jefes.
-- [ ] Estadísticas revisadas en mapas pequeños y medianos.
+- [x] Estadísticas revisadas en mapas pequeños y medianos.
 - [ ] Guardar/cargar probado y consistente.
 - [ ] README.md completo y actualizado.
 - [ ] `main.py` corre sin errores.
-- [ ] Último commit con mensaje claro.
+- [ ] Último commit.
