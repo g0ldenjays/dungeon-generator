@@ -73,7 +73,7 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 - [x] Clase `Visualizador` con `rich`:
   - [x] `mostrar_mapa_completo()`.
   - [x] `mostrar_habitacion_actual()`.
-  - [ ] `mostrar_minimapa()` (solo visitadas con color).
+  - [x] `mostrar_minimapa()` (solo visitadas con color).
   - [ ] `mostrar_estado_explorador()`.
 - [ ] Arreglar lógica de movimiento, hacerla más intuitiva.
 

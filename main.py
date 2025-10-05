@@ -26,7 +26,7 @@ def main():
 
 	# 31 es el número de pasos para explorar un poco y caer en un portal y bendición, además de varios monstruos y tesoros
 	# Escriba 20 para ver que la parte de "¿Es nueva?" funciona
-	pasos_max = 20
+	pasos_max = 31
 
 	# Explora inicial
 	hab = mapa.habitaciones[explorador.posicion_actual]
@@ -84,8 +84,8 @@ def main():
 			else:
 				ultimo_pos = prev
 
-	vis.mostrar_mapa_completo(mapa, explorador.posicion_actual)
-	vis.mostrar_habitacion_actual(mapa, explorador, visitadas)
+	vis.mostrar_mapa_completo(mapa, explorador.posicion_actual, explorador)
+	#vis.mostrar_habitacion_actual(mapa, explorador, visitadas)
 
 	print(f"Exploración terminada. Inventario: {[str(obj) for obj in explorador.inventario]}")
 

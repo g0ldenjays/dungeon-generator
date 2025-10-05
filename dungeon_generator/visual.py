@@ -1,4 +1,4 @@
-from rich.console import Console
+from rich.console import Console, Group
 from rich.panel import Panel
 from rich import box
 from rich.columns import Columns
@@ -55,7 +55,7 @@ class Visualizador:
 		return Panel(texto, title="Guía", box=box.ROUNDED)
 
 	# Vista general del mapa
-	def mostrar_mapa_completo(self, mapa, pos_explorador):
+	def mostrar_mapa_completo(self, mapa, pos_explorador, explorador):
 		"""Muestra el mapa completo con contenido en habitaciones usando bloques de color."""
 		bh, bw = 3, 3
 		gap = 1
@@ -137,10 +137,16 @@ class Visualizador:
 
 		mapa_panel = Panel("\n".join(filas), title="Mapa General", box=box.ROUNDED, padding=(0, 1))
 
-		guia = self.panel_guia()
+		# Columna derecha: Guía arriba + Minimapa abajo (sin imprimir por separado)
+		right_col = Group(
+			self.panel_guia(),
+			self.mostrar_minimapa(explorador),
+		)
 
-		# Mostrar mapa y guia lado a lado
-		self.console.print(Columns([mapa_panel, guia], equal=True, expand=True))
+		# Mostrar dos columnas: izquierda (mapa) y derecha (guía + minimapa)
+		self.console.print(Columns([mapa_panel, right_col], equal=True, expand=True))
+
+
 
 	# Vista detallada de la habitación actual
 	def mostrar_habitacion_actual(self, mapa, explorador, visitadas):
@@ -250,5 +256,30 @@ class Visualizador:
 		panel_info = Panel(info_txt, title="Información", box=box.ROUNDED)
 
 		# Mostrar todo
-		self.console.print(Columns([panel_hab, guia], equal=True, expand=True))
+		self.console.print(Columns([panel_hab, guia]))
 		self.console.print(panel_info)
+
+	#Minimapa
+	def mostrar_minimapa(self, explorador):
+		mapa = explorador.mapa
+		H, W = mapa.alto, mapa.ancho
+
+		# estados por celda: empty / unseen / seen
+		estados = []
+		for y in range(H):
+			fila = []
+			for x in range(W):
+				hab = mapa.habitaciones.get((x, y))
+				if hab is None:
+					fila.append("empty")
+				else:
+					fila.append("seen" if getattr(hab, "visitada", False) else "unseen")
+			estados.append(fila)
+
+		SCALE_X = 2
+		bg = {"empty": "on grey11", "unseen": "on grey23", "seen": "on bright_magenta"}
+
+		def block(status): return f"[{bg.get(status, 'on grey11')}]" + " " * SCALE_X + "[/]"
+		filas = ["".join(block(s) for s in row) for row in estados]
+
+		return Panel("\n".join(filas), title="Minimapa", box=box.ROUNDED, padding=(0, 1))
