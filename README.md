@@ -21,7 +21,7 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 |  7 | `obtener_estadisticas_mapa()`                              | **Cumplido**    | [No hay observación]                                                                                                                                  |
 |  8 | Guardado/Cargado de partidas con JSON                      | **No cumplido** | Se trabajará en ello.                                                                                                                                 |
 |  9 | Clase `Visualizador`                                       | **Parcial**     | Para un mejor manejo de la librería `rich` se requirió apoyo de compañeros y herramientas de IA.                                                      |
-| 10 | Eventos aleatorios                                         | **Cumplido**    | No era parte del requerimiento; portales, trampas y fuentes son consumibles. La bonificación dura distancia Manhattan entre sala del evento e inicio. |
+| 10 | Eventos aleatorios                                         | **Cumplido**    | No era parte del requerimiento pero ahora portales, trampas y fuentes son consumibles. La bonificación dura distancia Manhattan entre sala del evento e inicio. |
 | 11 | Sistema de dificultad escalable                            | **Cumplido**    | El bonus de ataque enemigo es `distancia // 3`; la vida aumenta `distancia // 2`. Los tesoros suben su valor en `distancia`.                          |
 
 
