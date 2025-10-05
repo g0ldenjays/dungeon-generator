@@ -6,7 +6,7 @@
 Se descargan los archivos del repositorio con su(s) dependencia(s) correspondiente(s). Dejar el `main.py` fuera de la carpeta `dungeon_generator/` y ejecutar el mismo `main.py`.
 
 ## Diseño e Implementación
-Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de forma aleatoria y con conexiones que hacen verlo "ramificado". Se decora el mapa con contenidos `(Tesoros, Monstruos, Jefes, Eventos)` con porcentajes 15%, 27%, 2% y 10% respectivamente, el resto son salas vacías. El valor de los tesoros como la dificultad escala según distancia Manhattan entre sala actual y sala inicio. El `Explorador` posee vida, inventario y posición, además de un sistema de bonificación de daño. Para la visualización se usa la librería rich. 
+Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de forma aleatoria y con conexiones que hacen verlo "ramificado". Se decora el mapa con contenidos `(Tesoros, Monstruos, Jefes, Eventos)` con porcentajes `15%, 27%, 2% y 10%` respectivamente, el resto son salas vacías. El valor de los tesoros como la dificultad escala según distancia Manhattan entre sala actual y sala inicio. El `Explorador` posee vida, inventario y posición, además de un sistema de bonificación de daño. Para la visualización se usa la librería `rich`. 
 
 ## Cumplimiento de los requerimientos de la tarea
 
