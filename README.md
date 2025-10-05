@@ -74,10 +74,8 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
   - [x] `mostrar_mapa_completo()`.
   - [x] `mostrar_habitacion_actual()`.
   - [x] `mostrar_minimapa()` (solo visitadas con color).
-  - [ ] `mostrar_estado_explorador()`.
-- [ ] Arreglar lógica de movimiento, hacerla más intuitiva.
+  - [x] `mostrar_estado_explorador()`.
 
-- [ ] `main.py` actualizado con demo simple.
 
 ---
 
@@ -86,6 +84,9 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 - [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
 - [ ] Contenidos serializados con campo `"tipo"`.
 - [x] Dependencia `rich` registrada en `pyproject.toml`.
+- [ ] Arreglar lógica de movimiento, hacerla más intuitiva.
+
+- [ ] `main.py` actualizado con demo simple.
 
 ---
 

@@ -2,6 +2,7 @@ from rich.console import Console, Group
 from rich.panel import Panel
 from rich import box
 from rich.columns import Columns
+import math
 
 class Visualizador:
 	def __init__(self):
@@ -283,3 +284,87 @@ class Visualizador:
 		filas = ["".join(block(s) for s in row) for row in estados]
 
 		return Panel("\n".join(filas), title="Minimapa", box=box.ROUNDED, padding=(0, 1))
+
+	# Mostrar estado del explorador
+	def mostrar_estado_explorador(self, explorador):
+		"""
+		Panel 'Explorador' con:
+		- Vida: 20 bloques (2 chars) -> vida actual: red1, vida perdida: dark_red
+		- Bonus restante por: 10 bloques (2 chars), proporcional a la DURACIÓN restante del bonus
+		* proporción = bonus_duracion_restante / bonus_duracion_total (con fallback seguro)
+		* color: orange1 si bonus_ataque > 0, orange4 si bonus_ataque < 0, gris si no hay bonus
+		- Inventario: 'Item / Valor' con Cantidad de items y Valor total de inventario
+		"""
+
+		SCALE_X = 2  # cada bloque = 2 caracteres de ancho
+
+		def bloques(n, estilo):
+			return "".join(f"[{estilo}]" + " " * SCALE_X + "[/]" for _ in range(max(0, int(n))))
+
+		# Vida
+		vida_actual = int(getattr(explorador, "vida", 0))
+		vida_actual_clamped = max(0, min(20, vida_actual))
+		vida_perdida = 20 - vida_actual_clamped
+		barra_vida = bloques(vida_actual_clamped, "on red1") + bloques(vida_perdida, "on dark_red")
+
+		# Bonus proporcional a la duración restante
+		TOTAL_SLOTS = 10
+		restante = int(getattr(explorador, "bonus_duracion", 0))
+		total = int(getattr(explorador, "bonus_total", 0))
+
+		if total <= 0:
+			total = restante
+
+		if restante > 0 and total > 0:
+			proporcion = max(0.0, min(1.0, restante / total))
+			llenos = max(1, min(TOTAL_SLOTS, int(round(TOTAL_SLOTS * proporcion))))
+		else:
+			llenos = 0
+
+		bonus_atk = int(getattr(explorador, "bonus_ataque", 0))
+		if restante > 0 and bonus_atk > 0:
+			color_bonus = "on orange1"
+		elif restante > 0 and bonus_atk < 0:
+			color_bonus = "on orange4"
+		else:
+			color_bonus = "on orange4"
+
+		barra_bonus = bloques(llenos, color_bonus) + bloques(TOTAL_SLOTS - llenos, "on orange4")
+
+
+		# Inventario
+		if getattr(explorador, "inventario", None):
+			items = list(explorador.inventario)
+			lineas_inv = []
+			total_valor = 0
+			for obj in items:
+				nombre = getattr(obj, "nombre", str(obj))
+				valor = getattr(obj, "valor", 0)
+				try:
+					v = int(valor)
+				except Exception:
+					v = 0
+				total_valor += v
+				lineas_inv.append(f"- {nombre} / {v}")
+			inv_txt = "\n".join(lineas_inv)
+			resumen_inv = (
+				f"[bold]Total ítems:[/] [turquoise2]{len(items)}[/]   "
+				f"[bold]Valor total:[/] [green3]{total_valor}[/]"
+			)
+		else:
+			inv_txt = "(vacío)"
+			resumen_inv = "[bold]Total ítems:[/] [turquoise2]0[/]   [bold]Valor total:[/] [green3]0[/]"
+
+		contenido = (
+			"[bold]Puntos de salud:[/]\n"
+			f"{barra_vida}\n\n"
+			"[bold]Bonus restante por:[/]\n"
+			f"{barra_bonus}\n\n"
+			"[bold]Inventario: Item / Valor[/]\n"
+			f"{inv_txt}\n\n"
+			f"{resumen_inv}"
+		)
+
+		panel = Panel(contenido, title="Explorador", box=box.ROUNDED, padding=(0, 1))
+		self.console.print(panel)
+

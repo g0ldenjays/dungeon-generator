@@ -1,6 +1,6 @@
 class Explorador:
 	def __init__(self, mapa, posicion_inicial):
-		self.vida = 150
+		self.vida = 20
 		self.inventario = []
 		self.posicion_actual = posicion_inicial
 		self.mapa = mapa
@@ -8,6 +8,7 @@ class Explorador:
 		self.bonus_ataque = 0 # Daño extra
 		self.bonus_prob = 0.0 # Probabilidad extra
 		self.bonus_duracion = 0 # Habitaciones restantes antes de acabarse
+		self.aux = 0
  
 	# Moverse a una dirección
 	def mover(self, direccion):
@@ -21,6 +22,7 @@ class Explorador:
 			if self.bonus_duracion == 0:
 				self.bonus_ataque = 0
 				self.bonus_prob = 0.0
+				self.bonus_total = 0
 
 		return True
 
@@ -53,7 +55,10 @@ class Explorador:
 		return self.vida > 0
 	
 	def aplicar_bonificacion(self, potencia, atk, prob):
-		self.bonus_restantes = max(1, int(potencia))
+
+		self.aux = potencia
+		self.bonus_duracion = max(2, int(potencia)) # Al menos 2 habitaciones de duración
+		self.bonus_total = self.bonus_duracion
 		self.bonus_ataque = max(0, int(atk))
 		p = float(prob)
-		self.bonus_prob = potencia
+		self.bonus_prob = p

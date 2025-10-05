@@ -24,9 +24,11 @@ def main():
 	objetivo = n
 	ultimo_pos = None
 
-	# 31 es el número de pasos para explorar un poco y caer en un portal y bendición, además de varios monstruos y tesoros
-	# Escriba 20 para ver que la parte de "¿Es nueva?" funciona
-	pasos_max = 31
+	# CON LA SEMILLA 6147, MAPA 8X8 CON 35 HABS:
+		# 31 es el número de pasos para explorar un poco y caer en un portal y bendición, además de varios monstruos y tesoros
+		# Pase de 20 a 5 para ver que la barra de vida se actualiza correctamente
+		# Escriba 20 para ver que la parte de "¿Es nueva?" funciona
+	pasos_max = 34
 
 	# Explora inicial
 	hab = mapa.habitaciones[explorador.posicion_actual]
@@ -84,12 +86,12 @@ def main():
 			else:
 				ultimo_pos = prev
 
-	vis.mostrar_mapa_completo(mapa, explorador.posicion_actual, explorador)
+			
+		vis.mostrar_mapa_completo(mapa, explorador.posicion_actual, explorador)
+		vis.mostrar_estado_explorador(explorador)
+
 	#vis.mostrar_habitacion_actual(mapa, explorador, visitadas)
-
-	print(f"Exploración terminada. Inventario: {[str(obj) for obj in explorador.inventario]}")
-
-
+	
 	stats = mapa.obtener_estadisticas_mapa()
 	print(f"Estadísticas del mapa: {stats}")
 
