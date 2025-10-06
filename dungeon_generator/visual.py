@@ -292,7 +292,7 @@ class Visualizador:
 		- Vida: 20 bloques (2 chars) -> vida actual: red1, vida perdida: dark_red
 		- Bonus restante por: 10 bloques (2 chars), proporcional a la DURACIÓN restante del bonus
 		* proporción = bonus_duracion_restante / bonus_duracion_total (con fallback seguro)
-		* color: orange1 si bonus_ataque > 0, orange4 si bonus_ataque < 0, gris si no hay bonus
+		* color: orange1 si bonus_ataque > 0, dark_green si bonus_ataque < 0, gris si no hay bonus
 		- Inventario: 'Item / Valor' con Cantidad de items y Valor total de inventario
 		"""
 
@@ -323,13 +323,13 @@ class Visualizador:
 
 		bonus_atk = int(getattr(explorador, "bonus_ataque", 0))
 		if restante > 0 and bonus_atk > 0:
-			color_bonus = "on orange1"
+			color_bonus = "on bright_green"
 		elif restante > 0 and bonus_atk < 0:
-			color_bonus = "on orange4"
+			color_bonus = "on dark_green"
 		else:
-			color_bonus = "on orange4"
+			color_bonus = "on dark_green"
 
-		barra_bonus = bloques(llenos, color_bonus) + bloques(TOTAL_SLOTS - llenos, "on orange4")
+		barra_bonus = bloques(llenos, color_bonus) + bloques(TOTAL_SLOTS - llenos, "on dark_green")
 
 
 		# Inventario

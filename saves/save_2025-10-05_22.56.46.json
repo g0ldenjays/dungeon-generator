@@ -108,7 +108,7 @@
                     2
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "norte": [
                         0,
@@ -154,7 +154,7 @@
                     1
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         1,
@@ -182,7 +182,7 @@
                     1
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         2,
@@ -204,7 +204,7 @@
                 "contenido": {
                     "tipo": "monstruo",
                     "nombre": "Moblin",
-                    "vida": 3,
+                    "vida": 0,
                     "ataque": 3
                 }
             },
@@ -256,7 +256,7 @@
                     0
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "sur": [
                         3,
@@ -274,7 +274,7 @@
                         "valor": 16,
                         "descripcion": "Se ve pixelada..."
                     },
-                    "usado": false
+                    "usado": true
                 }
             },
             {
@@ -338,7 +338,7 @@
                     3
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "norte": [
                         0,
@@ -494,7 +494,7 @@
                     0
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         3,
@@ -577,7 +577,7 @@
                     5
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "norte": [
                         1,
@@ -593,7 +593,7 @@
                     4
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         1,
@@ -611,7 +611,7 @@
                 "contenido": {
                     "tipo": "monstruo",
                     "nombre": "Moblin",
-                    "vida": 4,
+                    "vida": 0,
                     "ataque": 3
                 }
             },
@@ -643,7 +643,7 @@
                     0
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         4,
@@ -655,7 +655,7 @@
                     "nombre": "Portal",
                     "efecto": "portal",
                     "descripcion": "Evento: Una grieta en el espacio tiempo se abre",
-                    "usado": false
+                    "usado": true
                 }
             },
             {
@@ -665,7 +665,7 @@
                     4
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         2,
@@ -681,7 +681,7 @@
                     5
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "norte": [
                         2,
@@ -699,7 +699,7 @@
                         "valor": 16,
                         "descripcion": "El brillo te encandila"
                     },
-                    "usado": false
+                    "usado": true
                 }
             },
             {
@@ -804,7 +804,7 @@
                     5
                 ],
                 "inicial": false,
-                "visitada": false,
+                "visitada": true,
                 "conexiones": {
                     "oeste": [
                         2,
@@ -816,10 +816,10 @@
         ]
     },
     "explorador": {
-        "vida": 19,
+        "vida": 4,
         "posicion_actual": [
             0,
-            4
+            2
         ],
         "inventario": [
             {
@@ -831,11 +831,21 @@
                 "nombre": "Chapa metálica",
                 "valor": 8,
                 "descripcion": "Tiene algo grabado, aún brilla un poco"
+            },
+            {
+                "nombre": "Anillo con diamante",
+                "valor": 16,
+                "descripcion": "El brillo te encandila"
+            },
+            {
+                "nombre": "Espada de esmeralda",
+                "valor": 16,
+                "descripcion": "Se ve pixelada..."
             }
         ],
-        "bonus_ataque": 0,
-        "bonus_prob": 0.0,
-        "bonus_duracion": 0,
-        "bonus_total": 0
+        "bonus_ataque": 2,
+        "bonus_prob": 0.15,
+        "bonus_duracion": 2,
+        "bonus_total": 2
     }
 }

@@ -39,7 +39,7 @@ def deserializar_contenido(d):
 
 	if tipo == "monstruo":
 		nombre = d.get("nombre", "Monstruo")
-		vida   = d.get("vida", 1)
+		vida = d.get("vida", 1)
 		ataque = d.get("ataque", 1)
 		return Monstruo(nombre, vida=vida, ataque=ataque)
 

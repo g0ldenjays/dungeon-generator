@@ -2,6 +2,12 @@
 
 # Proyecto: Generador de mapa de dungeons usando OOP 
 
+
+# Resumen del Proyecto
+El proyecto está actualmente terminado y cumple con los requisitos planteados. En este último commit se incorpora el archivo `save_2025-10-05_22.56.46.json`, el cual funcionará como prueba de que tanto el guardado y cargado funcionan perfectamente, además, el guardado está en un punto donde al explorador se le aplicó el efecto de bonus para evidenciar de que el efecto bonificador va decrementando cuando se aleja de la sala. 
+
+*El cargado se hace después de ejecutar el código e ingresar los parámetros deseados (en este caso dichos parámetros dan lo mismo ya que se sobreescribirán con los del save.)*
+
 ## Instrucciones de ejecución
 Se descargan los archivos del repositorio con su(s) dependencia(s) correspondiente(s). Dejar el `main.py` fuera de la carpeta `dungeon_generator/` y ejecutar el mismo `main.py`.
 
@@ -13,14 +19,14 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 |  # | Requerimiento                                              | Estado          | Observación                                                                                                                                           |
 | -: | ---------------------------------------------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 |  1 | Clase `Habitacion` y sus atributos                         | **Cumplido**    | [No hay observación]                                                                                                                                  |
-|  2 | Clase `Mapa` con lo solicitado                             | **Parcial**     | La cantidad de habitaciones / tamaño del mapa ahora son ingresables. Falta pulir el ingreso. |
+|  2 | Clase `Mapa` con lo solicitado | **Cumplido** | La cantidad de habitaciones / tamaño del mapa ahora son ingresables. Ingreso está filtrado. |
 |  3 | Clase `Objeto` con atributos                               | **Cumplido**    | [No hay observación]                                                                                                                                  |
 |  4 | Clase `Explorador` con sus atributos                       | **Cumplido**    | [No hay observación]                                                                                                                                  |
 |  5 | Clase abstracta `ContenidoHabitacion` y sus hijas          | **Cumplido**    | Se agregaron 3 jefes (con sus recompensas) y 3 monstruos. Para los tesoros se agregaron 5 objetos distintos.                                          |
 |  6 | Reglas de distribución                                     | **Cumplido**    | [No hay observación]                                                                                                                                  |
 |  7 | `obtener_estadisticas_mapa()`                              | **Cumplido**    | [No hay observación]                                                                                                                                  |
-|  8 | Guardado/Cargado de partidas con JSON                      | **Parcial** | Guardado implementado. Se seguirá trabajando en ello. Para un mejor manejo en JSON se utilizó herramientas de IA. |
-|  9 | Clase `Visualizador`                                       | **Parcial**     | Para un mejor manejo de la librería `rich` se requirió apoyo de compañeros y herramientas de IA.                                                      |
+|  8 | Guardado/Cargado de partidas con JSON | **Cumplido** | Para un mejor manejo en JSON se utilizó herramientas de IA. |
+|  9 | Clase `Visualizador`                                       | **Completo**     | Para un mejor manejo de la librería `rich` se requirió apoyo de compañeros y herramientas de IA.                                                      |
 | 10 | Eventos aleatorios                                         | **Cumplido**    | No era parte del requerimiento pero ahora portales, trampas y fuentes son consumibles. La bonificación dura distancia Manhattan entre sala del evento e inicio. |
 | 11 | Sistema de dificultad escalable                            | **Cumplido**    | El bonus de ataque enemigo es `distancia // 3`; la vida aumenta `distancia // 2`. Los tesoros suben su valor en `distancia`.                          |
 
@@ -102,5 +108,5 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 - [x] Estadísticas revisadas en mapas pequeños y medianos.
 - [x] Guardar/cargar probado y consistente.
 - [x] `main.py` corre sin errores.
-- [ ] README.md completo y actualizado.
-- [ ] Último commit.
+- [x] README.md completo y actualizado.
+- [x] Último commit.
