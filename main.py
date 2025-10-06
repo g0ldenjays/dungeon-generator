@@ -1,16 +1,25 @@
 from dungeon_generator.explorer import Explorador
 from dungeon_generator.core import Mapa
 from dungeon_generator.visual import Visualizador
-from dungeon_generator.utils import pedir_entero, confirmar_salida, renderizar, guardar_partida, mostrar_mensaje_cargar, avanzar_un_paso
+from dungeon_generator.utils import pedir_entero, confirmar_salida, renderizar, guardar_partida, cargar_partida, avanzar_un_paso
 
 def main():
 	print("Parámetros del mapa (ENTER para valores por defecto):")
 	ancho = pedir_entero("Ancho", 8)
 	alto = pedir_entero("Alto", 8)
+
+	while ancho <= 3 or alto <= 3 or ancho >= 15 or alto >= 15:
+		print("El ancho y alto deben estar entre 4 y 14.")
+		ancho = pedir_entero("Ancho", 8)
+		alto = pedir_entero("Alto", 8)
+
 	n_habs = pedir_entero("Cantidad de habitaciones", 35)
+	while n_habs > ancho * alto or n_habs <= 4:
+		print(f"La cantidad de habitaciones debe estar entre 5 y {ancho * alto}.")
+		n_habs = pedir_entero("Cantidad de habitaciones", 35)
+
 	semilla = pedir_entero("Semilla", 6147)
 
-	
 	mapa = Mapa(ancho=ancho, alto=alto)
 	mapa.generar_estructura(n_habitaciones=n_habs, seed=semilla)
 	mapa.decorar()
@@ -38,7 +47,12 @@ def main():
 			guardar_partida(mapa, explorador)
 			continue
 		elif comando == "4":
-			mostrar_mensaje_cargar()
+			res = cargar_partida()
+			if res is not None:
+				mapa_cargado, explorador_cargado = res
+				if mapa_cargado is not None and explorador_cargado is not None:
+					mapa = mapa_cargado
+					explorador = explorador_cargado
 			continue
 		elif comando == "5":
 			if confirmar_salida():

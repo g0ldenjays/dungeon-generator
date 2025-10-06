@@ -1,7 +1,11 @@
 from dungeon_generator.visual import Visualizador
 from dungeon_generator.save import guardar_datos
+from dungeon_generator.load import cargar_datos
+from rich.console import Console
 from datetime import datetime
 import random, os
+
+console = Console()
 
 # Utilidades para el main.py
 def limpiar_pantalla():
@@ -42,25 +46,60 @@ def obtener_tipo_contenido(hab):
 
 # Acciones del menú
 def guardar_partida(mapa, explorador):
+	console.print("\n[bright_yellow] [ GUARDANDO PARTIDA... ] [/]")
 
-	print("\n[ GUARDARNDO... ]")
-
-	if not os.path.exists("saves"):
-		os.makedirs("saves", exist_ok=True)
+	os.makedirs("saves", exist_ok=True)
 
 	tiempo = datetime.now().strftime("%Y-%m-%d_%H.%M.%S")
 	nombre = f"save_{tiempo}.json"
-
 	ruta = os.path.join("saves", nombre)
 
-	print("\n[ GUARDADO EXITOSO ]")
 	guardar_datos(mapa, explorador, ruta)
+
+	console.print(f"[bright_green] [ GUARDADO EXITOSO: [green]{ruta} [/] ] [/]")
+
 	input("Presiona ENTER para continuar...")
 
-def mostrar_mensaje_cargar():
-	# Aquí estará cargar_partida()
-	print("\n[ CARGAR ] Esta función aún no está implementada.")
-	input("Presiona ENTER para continuar...")
+
+def cargar_partida():
+	saves_dir = "saves"
+	archivos = []
+	if os.path.isdir(saves_dir):
+		archivos = [f for f in os.listdir(saves_dir) if f.endswith(".json")]
+
+	ruta = None
+
+	if archivos:
+		console.print("\n[bold][purple] [ SAVES DISPONIBLES : ] [/][/]")
+		for i, nombre in enumerate(archivos, start=1):
+			nombre = os.path.join(saves_dir, nombre)
+			console.print(f"[bold]{i}[/].- {nombre}")
+
+		eleccion = input("\nIngresa número para elegir, ENTER para el más reciente: ").strip()
+
+		if eleccion == "":
+			ruta = os.path.join(saves_dir, archivos[0])  # el primero en lista
+		elif eleccion.isdigit():
+			idx = int(eleccion)
+			if 1 <= idx <= len(archivos):
+				ruta = os.path.join(saves_dir, archivos[idx - 1])
+			else:
+				console.print("[purple] [ NÚMERO FUERA DE RANGO ] [/]")
+				ruta = input("Ruta a cargar (ej. saves/save_YYYY-MM-DD_HH.MM.SS.json): ").strip()
+		else:
+			ruta = eleccion
+	else:
+		console.print("\n[bright_red] [ NO SE ENCONTRARON SAVES EN 'saves/' ][/]")
+		input("ENTER para continuar...")
+		return None, None
+		
+
+	console.print("\n[bright_yellow] [ CARGANDO PARTIDA... ] [/]")
+	mapa, explorador = cargar_datos(ruta)
+	console.print("\n[bright_green] [ CARGA EXITOSA ] [/]")
+	input("ENTER para continuar...")
+	return mapa, explorador
+
 
 def confirmar_salida() -> bool:
 	resp = input("¿Seguro que deseas salir? (y/n): ").strip().lower()

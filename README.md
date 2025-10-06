@@ -87,7 +87,7 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 - #### Con una demo sólida:
   - [x] Contenidos serializados con campo `"tipo"`.
   - [x] `guardar_partida(mapa, explorador, archivo)` implementado.
-  - [ ] `cargar_partida(archivo)` reconstruye mapa y explorador.
+  - [x]`cargar_partida(archivo)` reconstruye mapa y explorador.
 
 #### Post push:
 
@@ -96,11 +96,11 @@ Mi generador de dungeons trata de ser sencillo y modular. El mapa se expande de 
 ---
 
 ### Día 5 — Pulido, QA y entrega final
-- [ ] Restringir habitaciones/tamaño de mapa a un mínimo.
+- [x] Restringir habitaciones/tamaño de mapa a un intervalo.
 - [x] Eventos probados: trampa, fuente, portal, bonificación.
 - [x] Arreglar estadísticas de monstruos/jefes.
 - [x] Estadísticas revisadas en mapas pequeños y medianos.
-- [ ] Guardar/cargar probado y consistente.
-- [ ] README.md completo y actualizado.
+- [x] Guardar/cargar probado y consistente.
 - [x] `main.py` corre sin errores.
+- [ ] README.md completo y actualizado.
 - [ ] Último commit.

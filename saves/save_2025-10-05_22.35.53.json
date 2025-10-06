@@ -123,7 +123,8 @@
                     "tipo": "evento",
                     "nombre": "Bendicion",
                     "efecto": "bonificacion",
-                    "descripcion": "Evento: La sala estaba bendecida"
+                    "descripcion": "Evento: La sala estaba bendecida",
+                    "usado": false
                 }
             },
             {
@@ -272,7 +273,8 @@
                         "nombre": "Espada de esmeralda",
                         "valor": 16,
                         "descripcion": "Se ve pixelada..."
-                    }
+                    },
+                    "usado": false
                 }
             },
             {
@@ -409,7 +411,8 @@
                         "nombre": "Roca suave",
                         "valor": 5,
                         "descripcion": "Roca fina que parece especial"
-                    }
+                    },
+                    "usado": true
                 }
             },
             {
@@ -480,7 +483,8 @@
                         "nombre": "Chapa metálica",
                         "valor": 8,
                         "descripcion": "Tiene algo grabado, aún brilla un poco"
-                    }
+                    },
+                    "usado": true
                 }
             },
             {
@@ -521,7 +525,8 @@
                     "tipo": "evento",
                     "nombre": "Trampa",
                     "efecto": "trampa",
-                    "descripcion": "Evento: Un mecanismo oculto se activa"
+                    "descripcion": "Evento: Un mecanismo oculto se activa",
+                    "usado": false
                 }
             },
             {
@@ -572,7 +577,7 @@
                     5
                 ],
                 "inicial": false,
-                "visitada": true,
+                "visitada": false,
                 "conexiones": {
                     "norte": [
                         1,
@@ -588,7 +593,7 @@
                     4
                 ],
                 "inicial": false,
-                "visitada": true,
+                "visitada": false,
                 "conexiones": {
                     "oeste": [
                         1,
@@ -606,7 +611,7 @@
                 "contenido": {
                     "tipo": "monstruo",
                     "nombre": "Moblin",
-                    "vida": 0,
+                    "vida": 4,
                     "ataque": 3
                 }
             },
@@ -649,7 +654,8 @@
                     "tipo": "evento",
                     "nombre": "Portal",
                     "efecto": "portal",
-                    "descripcion": "Evento: Una grieta en el espacio tiempo se abre"
+                    "descripcion": "Evento: Una grieta en el espacio tiempo se abre",
+                    "usado": false
                 }
             },
             {
@@ -659,7 +665,7 @@
                     4
                 ],
                 "inicial": false,
-                "visitada": true,
+                "visitada": false,
                 "conexiones": {
                     "oeste": [
                         2,
@@ -675,7 +681,7 @@
                     5
                 ],
                 "inicial": false,
-                "visitada": true,
+                "visitada": false,
                 "conexiones": {
                     "norte": [
                         2,
@@ -692,7 +698,8 @@
                         "nombre": "Anillo con diamante",
                         "valor": 16,
                         "descripcion": "El brillo te encandila"
-                    }
+                    },
+                    "usado": false
                 }
             },
             {
@@ -746,7 +753,8 @@
                         "nombre": "Cuerno de Gleeok",
                         "valor": 40,
                         "descripcion": "Poderoso cuerno pesado"
-                    }
+                    },
+                    "muerto": false
                 }
             },
             {
@@ -769,7 +777,8 @@
                         "nombre": "Roca suave",
                         "valor": 9,
                         "descripcion": "Roca fina que parece especial"
-                    }
+                    },
+                    "usado": false
                 }
             },
             {
@@ -795,7 +804,7 @@
                     5
                 ],
                 "inicial": false,
-                "visitada": true,
+                "visitada": false,
                 "conexiones": {
                     "oeste": [
                         2,
@@ -807,10 +816,10 @@
         ]
     },
     "explorador": {
-        "vida": 7,
+        "vida": 19,
         "posicion_actual": [
-            2,
-            5
+            0,
+            4
         ],
         "inventario": [
             {
@@ -822,11 +831,6 @@
                 "nombre": "Chapa metálica",
                 "valor": 8,
                 "descripcion": "Tiene algo grabado, aún brilla un poco"
-            },
-            {
-                "nombre": "Anillo con diamante",
-                "valor": 16,
-                "descripcion": "El brillo te encandila"
             }
         ],
         "bonus_ataque": 0,
